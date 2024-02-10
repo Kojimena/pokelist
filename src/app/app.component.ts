@@ -20,6 +20,7 @@ export class AppComponent {
   searchTerm: string = '';
   data: any[] = [];
   tempData: any[] = [];
+  order: string = 'asc';
 
   constructor() {}
 
@@ -37,6 +38,21 @@ export class AppComponent {
     }
   }
 
+  onOrderChange(newValue: string) { //recibimos el id del select
+    if (newValue === 'desc') {
+      this.data = [...this.tempData].sort((a, b) => a.name > b.name ? -1 : 1);
+    } else if (newValue === 'asc') {
+      this.data = [...this.tempData].sort((a, b) => a.name < b.name ? -1 : 1);
+    } else if (newValue === 'ascw') {
+      this.data = [...this.tempData].sort((a, b) => a.weight - b.weight);
+    } else if (newValue === 'descw') {
+      this.data = [...this.tempData].sort((a, b) => b.weight - a.weight);
+    } else {
+      this.data = [...this.tempData];
+    }
+  }
+  
+
   fetchPokemon() { //obtención de datos de la API
     this.httpClient.get<any>('https://pokeapi.co/api/v2/pokemon?limit=200&offset=0').subscribe((response) => {
       //mapeamos los resultados de la API
@@ -49,13 +65,14 @@ export class AppComponent {
             sprite: details.sprites.front_default,
             type: details.types.map((type: { type: { name: string } }) => type.type.name).join(', '),
             abilities: details.abilities.map((ability: { ability: { name: string } }) => ability.ability.name).join(', '),
+            weight: details.weight,
           }))
         )
       );
       
       //usamos forkJoin para esperar a que todos los observables se completen y luego los combinamos en un solo observable con subscribe
       forkJoin(pokemonDetailsRequests).subscribe((pokemonDetails: any) => {
-        this.data = pokemonDetails;
+        this.data = pokemonDetails.sort((a: { name: string }, b: { name: string }) => (a.name > b.name ? 1 : -1)); //orden default
         this.tempData = this.data;
         console.log(this.data);
         console.log("Data: ", this.tempData);
