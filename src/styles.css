@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient {
+    background: linear-gradient(to bottom, #234375 0%, #19528E 100%);
+    color: #fff;
+  }
+  
+  .outline_btn {
+    @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+  }
+  
+  .head_text {
+    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+  }
+
+  .blue_gradient {
+    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+  }
+  
+  .project_card {
+    @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-6;
+  }
