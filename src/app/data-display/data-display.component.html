@@ -1,7 +1,7 @@
 <div class="flex w-full pt-10 flex-wrap" [ngClass]="{'flex-nowrap h-screen': datapokemon.length < 4}" *ngIf="show === true">
     @for (pokemon of datapokemon; track pokemon.name){
     <div class="p-4 w-full" [ngClass]="{'lg:w-1/4': datapokemon.length > 4}">
-        <div class="project_card lg:h-80 justify-end items-start flex flex-col">
+        <div class="project_card lg:h-96 justify-between items-start flex flex-col">
             <h2 class="text-xl font-semibold text-white text-center">{{pokemon.name}}</h2>
             <div class="flex justify-center gap-2 items-center flex-col">
                 <img [src]="pokemon.sprite" alt="Sprite of {{ pokemon.name }}" class="w-24" />  
