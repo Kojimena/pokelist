@@ -1,0 +1,28 @@
+<div class="flex flex-col rounded-md lg:p-10 lg:mt-28 mt-10 shadow-3xl project_card">
+    <div class="flex justify-between">
+        <span class="text-white text-4xl font-semibold">{{moredata.name}} </span>
+        <button class="bg-redish px-4 rounded-full" (click)="close.emit()">X</button>
+    </div>
+    <div class="flex lg:flex-row flex-col justify-center items-center py-8">
+        <div class="flex flex-col justify-center items-center bg-bluelight m-4 rounded-md shadow-3xl">
+            <img [src]="moredata.sprite" alt="Sprite of {{ moredata.name }}" class="w-96" />
+        </div>
+        <div class="flex-col gap-4 flex justify-start gap-6">
+            <div class="flex flex-col justify-start items-start p-2">
+                <span class="text-white text-lg">Weight: {{moredata.weight}} </span>
+                <span class="text-white text-lg">Height: {{moredata.height}} </span>
+                <span class="text-white text-lg" *ngIf= "moredata.type.length > 1">Types: {{moredata.type}} </span>
+                <span class="text-white text-lg">Abilities: {{moredata.abilities}} </span>
+            </div>
+            <div class="flex flex-col justify-start items-start">
+                <span class="text-white text-lg" *ngIf="moredata.base_experience !== undefined">Base Experience: {{moredata.base_experience}} </span>
+                <div class="shadow-3xl rounded-md bg-yellow p-4 w-full" *ngIf="moredata.stats !== undefined">
+                    <span class="text-bluedark text-lg font-bold" *ngIf="moredata.stats !== undefined">Stats </span>
+                        @for (stat of moredata.stats; track stat){
+                        <li class="text-bluedark text-lg ml-4" *ngIf="moredata.stats !== undefined">{{stat.name}}: {{stat.value}}</li>
+                        }
+                </div>
+            </div>  
+        </div>
+    </div> 
+</div>

@@ -66,6 +66,9 @@ export class AppComponent {
             type: details.types.map((type: { type: { name: string } }) => type.type.name).join(', '),
             abilities: details.abilities.map((ability: { ability: { name: string } }) => ability.ability.name).join(', '),
             weight: details.weight,
+            height: details.height,
+            baseExperience: details.base_experience,
+            stats : details.stats.map((stat: { base_stat: number, stat: { name: string } }) => ({ name: stat.stat.name, value: stat.base_stat }))
           }))
         )
       );

@@ -1,29 +1,33 @@
-<div class="flex w-full pt-10 flex-wrap" [ngClass]="{'flex-nowrap h-screen': datapokemon.length < 4}">
+<div class="flex w-full pt-10 flex-wrap" [ngClass]="{'flex-nowrap h-screen': datapokemon.length < 4}" *ngIf="show === true">
     @for (pokemon of datapokemon; track pokemon.name){
     <div class="p-4 w-full" [ngClass]="{'lg:w-1/4': datapokemon.length > 4}">
         <div class="project_card lg:h-80 justify-end items-start flex flex-col">
             <h2 class="text-xl font-semibold text-white text-center">{{pokemon.name}}</h2>
             <div class="flex justify-center gap-2 items-center flex-col">
-                <img [src]="pokemon.sprite" alt="Sprite of {{ pokemon.name }}" class="w-30" />  
-                <div class="flex gap-4 justify-center items-center lg:flex-row flex-col">
-                    <div class="flex flex-col justify-center items-center">
+                <img [src]="pokemon.sprite" alt="Sprite of {{ pokemon.name }}" class="w-24" />  
+                <div class="flex gap-4 justify-center items-start lg:flex-row flex-col w-full">
+                    <div class="flex flex-col lg:justify-start lg:items-center justify-start w-full">
                         <span class="text-white font-semibold flex gap-2">
                             <img src="assets/type.png" alt="Type" class="w-4" />
                             Type
                         </span>
-                        <span class="text-white ml-4 text-center">{{pokemon.type}}</span>
+                        <span class="text-white ml-4 lg:text-center mt-2">{{pokemon.type}}</span>
                     </div>
-                    <div class="flex flex-col justify-center items-center">
+                    <div class="flex flex-col lg:justify-start lg:items-center justify-start w-full">
                         <span class="text-white font-semibold flex gap-2">
                             <img src="assets/abilities.png" alt="Abilities" class="w-4" />
                             Abilities
                         </span>
-                        <span class="text-white ml-4 text-center">{{pokemon.abilities}}</span>
+                        <span class="text-white ml-4 lg:text-center mt-2">{{pokemon.abilities}}</span>
                     </div>
                 </div>
             </div>
-            <button class="bg-bluelight p-4 rounded-md text-white font-semibold mt-4 w-full">Details</button>
+            <button class="bg-bluelight p-4 rounded-md text-white font-semibold mt-4 w-full hover:bg-yellow hover:text-bluedark" (click)="showMore(pokemon)">More Details</button>
         </div>
     </div>
     }
+</div>
+
+<div class="flex flex-col w-full" *ngIf="show === false">
+    <app-more-data [moredata]="pokemon" (close)="closeMore()"></app-more-data>
 </div>

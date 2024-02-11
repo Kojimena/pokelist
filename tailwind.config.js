@@ -28,7 +28,7 @@ export const theme = {
       montserrat: ['Montserrat', 'sans-serif'],
     },
     colors: {
-      'bluedark': '#363b81',
+      'bluedark': '#19528E',
       'bluelight':'#5db9ff',
       'redish':'#ff1f1f',
       'yellow':'#fbd743'
